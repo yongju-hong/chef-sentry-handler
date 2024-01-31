@@ -43,7 +43,7 @@ class Chef::Handler::Sentry < Chef::Handler
   def report
     return if success?
     event = if exception
-              Raven::Event.capture_exception(exception)
+              Raven.capture_exception(exception)
             else
               Raven::Event.new do |e|
                 e.message = 'Unknown fatal error during Chef run'
